@@ -1,0 +1,92 @@
+﻿@model FlightSearchResultViewModel
+
+@section Styles {
+    <style type="text/css">
+
+        .duration {
+            border-left: 1px solid gray;
+            font-size: x-small;
+            font-weight: bold;
+        }
+
+        .flight-time {
+            font-weight: bold;
+        }
+
+        .price {
+            font-weight: bold;
+        }
+    </style>
+}
+
+<h2>Book Flights, Hotels and Holiday Packages</h2>
+<hr />
+<div class="row">
+    <div class="col-md-5">
+            <div>
+                <span>Depart</span>
+                <span>Arrive</span>
+                <span>Duration</span>
+                <span>Price Per Adult</span>
+            </div>
+            @if (Model.FlightsDepartures != null)
+        {
+            @foreach (var flightDeparture in Model.FlightsDepartures)
+            {
+                <div class="card mb-3 shadow">
+                    <div class="card-body">
+                        <img src="~/images/airline-logo.jpg " alt="Airline Logo" />
+                        <span>@flightDeparture.Name</span>
+                        <span class="flight-time">@flightDeparture.DepartureDateTime.ToString("hh:mm")</span>
+                        <span class="blockquote-footer"></span>
+                        <span class="flight-time">@flightDeparture.ArrivalDateTime.ToString("hh:mm")</span>
+                        <span class="duration">@flightDeparture.FormattedDuration</span>
+                        <span class="price">@flightDeparture.PricePerAdult.ToString("C0")</span>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="card mb-3 shadow">
+                <div class="card-body">
+                    No Departure flights found for this search criteria
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="col-md-5">
+        <div>
+            <span>Depart</span>
+            <span>Arrive</span>
+            <span>Duration</span>
+            <span>Price Per Adult</span>
+        </div>
+        @if (Model.FlightsReturns != null)
+        {
+            @foreach (var flightReturn in Model.FlightsReturns)
+            {
+                <div class="card mb-3 shadow">
+                    <div class="card-body">
+                        <img src="~/images/airline-logo.jpg " alt="Airline Logo" />
+                        <span>@flightReturn.Name</span>
+                        <span class="flight-time">@flightReturn.DepartureDateTime.ToString("hh:mm")</span>
+                        <span class="blockquote-footer"></span>
+                        <span class="flight-time">@flightReturn.ArrivalDateTime.ToString("hh:mm")</span>
+                        <span class="duration">@flightReturn.FormattedDuration</span>
+                        <span class="price">@flightReturn.PricePerAdult.ToString("C0")</span>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="card mb-3 shadow">
+                <div class="card-body">
+                    No Departure flights found for this search criteria
+                </div>
+            </div>
+        }
+    </div>
+</div>
